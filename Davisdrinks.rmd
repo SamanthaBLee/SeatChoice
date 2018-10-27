@@ -1,7 +1,7 @@
 ---
 title: "Booze and choice of seat"
-author: "Put your name here!"
-date: "put the date here"
+author: "Samantha Lee"
+date: "Fall 2018"
 output:
   html_document:
     df_print: paged
@@ -36,9 +36,15 @@ Same question restricted to just female students.
 ### Graphical Descriptive Results
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+We will now use a box plot to compare the amount of alcohol consumed by both males and females sitting in the different seating sections.  Looking at the boxplot, it appears that the people in the front drink around 1 drink a week, the middle section drinks about 2-3 drinks a week, and the back section drinks about 5 drinks a week.
+
 ```{r}
 boxplot(alcohol~Seat,data=ucdavis1,main="guys & gals")
 ```
+
+We will now use a boxplot to compare the amount of alcohol consumed by just the women in the class to their seating section. Looking at the box plot, it appears the women in the front drink about 1 drink a week, the middle drinks about 2 drinks a week, and the back drinks about 3 drinks a week.
+
   
 ```{r}
 boxplot(alcohol~Seat,data=davisgals,main="Just gals")
@@ -48,10 +54,15 @@ boxplot(alcohol~Seat,data=davisgals,main="Just gals")
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
   
+We will now look at the average number of drinks drank by each seating section (both men and women) a week. Looking at the average number of drinks drank a week, the front drinks about 2 drink a week, the middle drank 3 drinks a week, and the back drank about 9 drinks a week.
+
 ```{r}
 summary(alcohol~Seat,data=ucdavis1)
 ```
    
+We will now look at the average number of drinks drank by each seating section (just women) a week. Looking at the average number of drinks drank a week, the front drank 1 drink, the middle drank 2 drinks, and the back drank 5 drinks.
+
+
 ```{r}
 summary(alcohol~Seat,data=davisgals)
 ```
@@ -59,12 +70,17 @@ summary(alcohol~Seat,data=davisgals)
 ## Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+We will now look at the data for both the men and women with one way anova. Since the confidence inteval contains 0, we fail to reject the null hypothesis.
+
   
 ```{r}
 model <- aov(alcohol~Seat,data=ucdavis1)
 summary(model)
 plot(TukeyHSD(model))
 ```
+
+We will now look at the data for the women with one way anova.  Since the confindence intercal contains 0, we fail to reject the null hypothesis.
     
 ```{r}
 model.1 <- aov(alcohol~Seat,data=davisgals)
@@ -76,3 +92,5 @@ plot(TukeyHSD(model.1))
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+ 
+Looking at the data, the front row drinks the least and the back row drinks the most. Since the middle-front difference contains 0, we fail to reject the null hypothesis.
